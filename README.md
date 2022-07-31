@@ -2,7 +2,7 @@
 <b>Wav2AudioClipSample</b> is a sample project to convert <code>.wav</code> to <code>AudioClip</code>.
 
 ``` sample.cs
-// Reads .wav as a byte array.
+// Read .wav as a byte array.
 byte[] wav = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, "sample.wav"));
 
 // Convert .wav to AudioClip
