@@ -5,11 +5,14 @@ public class WavTest : MonoBehaviour
 {
     private void Start()
     {
-        var wav = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, "sample.wav"));
+        // Reads .wav as a byte array.
+        byte[] wav = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, "sample.wav"));
 
-        var audioClip = Wav.ToAudioClip(wav, "sample");
+        // Convert .wav to AudioClip
+        AudioClip audioClip = Wav.ToAudioClip(wav, "sample");
 
-        var audioSource = gameObject.AddComponent<AudioSource>();
+        // Play AudioClip
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.Play();
     }
