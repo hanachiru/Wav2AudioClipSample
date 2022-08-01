@@ -80,7 +80,15 @@ public static class Wav
         memoryStream.Read(subChunkIDBytes);
 
         // If fact exists, discard fact
-        if (subChunkIDBytes[0] == 0x66 && subChunkIDBytes[1] == 0x61 && subChunkIDBytes[2] == 0x63 && subChunkIDBytes[3] == 0x74) memoryStream.Seek(8, SeekOrigin.Current);
+        if (subChunkIDBytes[0] == 0x66 && subChunkIDBytes[1] == 0x61 && subChunkIDBytes[2] == 0x63 &&
+            subChunkIDBytes[3] == 0x74)
+        {
+            var factSizeBytes = new byte[4];
+            memoryStream.Read(factSizeBytes);
+            var factSize = BitConverter.ToInt32(factSizeBytes);
+            memoryStream.Seek(factSize , SeekOrigin.Current);
+            memoryStream.Read(subChunkIDBytes);
+        }
         if (subChunkIDBytes[0] != 0x64 || subChunkIDBytes[1] != 0x61 || subChunkIDBytes[2] != 0x74 || subChunkIDBytes[3] != 0x61) throw new ArgumentException("fileBytes is not the correct Wav file format.");
 
         // dataSize (=NumSamples * NumChannels * BitsPerSample/8)
