@@ -105,7 +105,7 @@ public static class Wav
             _ => throw new ArgumentException($"bitPerSample is not supported : bitPerSample = {bitPerSample}")
         };
 
-        var audioClip = AudioClip.Create(audioClipName, audioClipData.Length, (int) channels, sampleRate, false);
+        var audioClip = AudioClip.Create(audioClipName, audioClipData.Length, channels, sampleRate, false);
         audioClip.SetData(audioClipData, 0);
         return audioClip;
     }
