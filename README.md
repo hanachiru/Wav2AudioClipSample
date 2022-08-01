@@ -9,6 +9,8 @@ byte[] wav = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, "sa
 AudioClip audioClip = Wav.ToAudioClip(wav, "sample");
 ```
 
+[Article explained in Japanese](https://www.hanachiru-blog.com/entry/2022/08/01/120000)
+
 ## Dependency
 Unity 2021.3.0f1 or later  
 
