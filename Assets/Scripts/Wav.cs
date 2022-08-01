@@ -6,10 +6,10 @@ using UnityEngine;
 public static class Wav
 {
     /// <summary>
-    /// AudioClipを作成する
+    /// Create AudioClip
     /// </summary>
-    /// <param name="fileBytes">Wavファイル</param>
-    /// <param name="audioClipName">生成するファイル名</param>
+    /// <param name="fileBytes">.wav</param>
+    /// <param name="audioClipName">file name</param>
     /// <returns>AudioClip</returns>
     public static AudioClip ToAudioClip(byte[] fileBytes, string audioClipName)
     {
