@@ -18,7 +18,7 @@ public static class Wav
         // RIFF
         var riffBytes = new byte[4];
         memoryStream.Read(riffBytes);
-        if (riffBytes[0] != 82 || riffBytes[1] != 73 || riffBytes[2] != 70 || riffBytes[3] != 70)
+        if (riffBytes[0] != 0x52 || riffBytes[1] != 0x49 || riffBytes[2] != 0x46 || riffBytes[3] != 0x46)
             throw new ArgumentException("fileBytes is not the correct Wav file format.");
         
         // chunk size
@@ -80,7 +80,7 @@ public static class Wav
         memoryStream.Read(subChunkIDBytes);
 
         // If fact exists, discard fact
-        if (subChunkIDBytes[0] == 0x66 && subChunkIDBytes[1] == 0x61 && subChunkIDBytes[2] == 0x63 && subChunkIDBytes[3] == 0x74) memoryStream.Seek(12, SeekOrigin.Current);
+        if (subChunkIDBytes[0] == 0x66 && subChunkIDBytes[1] == 0x61 && subChunkIDBytes[2] == 0x63 && subChunkIDBytes[3] == 0x74) memoryStream.Seek(8, SeekOrigin.Current);
         if (subChunkIDBytes[0] != 0x64 || subChunkIDBytes[1] != 0x61 || subChunkIDBytes[2] != 0x74 || subChunkIDBytes[3] != 0x61) throw new ArgumentException("fileBytes is not the correct Wav file format.");
 
         // dataSize (=NumSamples * NumChannels * BitsPerSample/8)
@@ -149,5 +149,3 @@ public static class Wav
         return audioClipData;
     }
 }
-
-
